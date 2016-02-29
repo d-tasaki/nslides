@@ -91,6 +91,8 @@ GEM
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-copy-subdir (0.1.0)
+      capistrano
     capistrano-rails (1.1.6)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -305,6 +307,7 @@ DEPENDENCIES
   byebug
   capistrano
   capistrano-bundler
+  capistrano-copy-subdir
   capistrano-delayed_job!
   capistrano-rails
   capistrano-rbenv
