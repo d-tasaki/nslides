@@ -1,0 +1,10 @@
+---
+- yum: name={{item}} state=latest
+  with_items:
+    - gcc
+    - zlib-devel
+    - openssl-devel
+    - mysql-devel
+    - libffi-devel
+    - readline-devel
+    - git

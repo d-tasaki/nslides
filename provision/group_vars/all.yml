@@ -1,0 +1,8 @@
+---
+
+remote_user: ec2-user
+ruby_version: 2.3.0
+rbenv_root: /usr/local/rbenv
+db_username: "{{ lookup('env', 'DB_USERNAME') }}"
+db_password: "{{ lookup('env', 'DB_PASSWORD') }}"
+private_key: ~/.ssh/nslides01.pem

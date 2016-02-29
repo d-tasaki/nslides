@@ -1,0 +1,6 @@
+---
+
+- name: 必要なgemのインストール
+  gem: name={{ item }} user_install=False
+  with_items:
+    - bundler

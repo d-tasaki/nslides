@@ -1,0 +1,24 @@
+div.action_box {
+    display: block;
+    padding-top: 608px;
+    width: 800px;
+    margin: 0 auto;
+}
+
+div.action_box button {
+    margin-bottom: 5px;
+}
+
+div.action_box form div {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+div.action_box input[type="text"] {
+    width: 660px;
+}
+
+div.action_box input[type="submit"] {
+    width: 130px;
+    margin-left: 5px;
+}

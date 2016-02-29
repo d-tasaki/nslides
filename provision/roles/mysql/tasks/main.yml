@@ -1,0 +1,17 @@
+---
+
+- yum: name={{item}} state=latest
+  with_items:
+    - mysql56
+    - mysql56-devel
+    - MySQL-python27
+
+- name: DB作成
+  mysql_db:
+    name: nslides
+    state: present
+    login_host:     "{{ db_host }}"
+    login_user:     "{{ db_username }}"
+    login_password: "{{ db_password }}"
+    collation: utf8_general_ci
+    encoding:  utf8

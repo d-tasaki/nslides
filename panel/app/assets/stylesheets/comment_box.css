@@ -1,0 +1,9 @@
+div.comment_box {
+    width:    800px;
+    height:   600px;
+    overflow: hidden;
+    position: absolute;
+    top:      0px;
+    left:     0px;
+    z-index:  10;
+}

@@ -1,0 +1,17 @@
+---
+
+# ansible 2.0以降で利用可能
+
+- name: アプリケーションサーバー用のIAMロール作成
+  iam:
+    iam_type: role
+    name: ap_servers
+    state: present
+
+- name: アプリケーションサーバー用のIAMロールにポリシー適用
+  iam_policy:
+    iam_type: role
+    iam_name: ap_servers
+    state: present
+    policy_name: ap_servers
+    policy_document: roles/iam/files/ap_servers_policy.json

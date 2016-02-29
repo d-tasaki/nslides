@@ -1,0 +1,32 @@
+.comment {
+    white-space: nowrap;
+    color:       #fff;
+    text-shadow: -1px 1px 0 #000;
+    font-size:   30px;
+    display:     inline-block;
+    position:    absolute;
+    left:        -500px;
+}
+
+.comment-appear,
+.comment-enter {
+    position: absolute;
+    left:     1400px;
+}
+
+.comment-appear.comment-appear-active,
+.comment-enter.comment-enter-active {
+    position:           absolute;
+    left:               -500px;
+    transition:         left 5s linear 1s;
+    -moz-transition:    left 5s linear 1s;
+    -webkit-transition: left 5s linear 1s;
+    -o-transition:      left 5s linear 1s;
+    -ms-transition:     left 5s linear 1s;
+}
+
+.comment-leave {
+}
+
+.comment-leave.comment-leave-active {
+}

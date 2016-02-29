@@ -1,0 +1,37 @@
+---
+
+- name: アプリケーションディレクトリ作成
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ remote_user }}"
+    group: rbenv
+    mode: 0775
+  with_items:
+    - /app/nslides/panel/shared/config
+    - /app/nslides/panel/shared/temp/pids
+    - /app/nslides/panel/shared/temp/sockets
+    - /app/nslides/panel/shared/temp/cache
+    - /app/nslides/panel/shared/temp/sessions
+    - /app/nslides/panel/shared/log
+    - /app/nslides/panel/shared/vendor/bundle
+
+- name: 設定ファイル作成
+  template:
+    src: "{{ item.src }}"
+    dest: "/app/nslides/panel/shared/{{ item.dst }}"
+    owner: "{{ remote_user }}"
+    group: rbenv
+    mode: 0660
+  with_items:
+    - { src: database.yml.j2, dst: config/database.yml }
+    - { src: secrets.yml.j2,  dst: config/secrets.yml  }
+
+- name: Bitbucketアクセス用SSH鍵の配置
+  copy:
+    src: "{{ private_key }}"
+    dest: ~/.ssh/id_rsa
+    owner: "{{ remote_user }}"
+    group: "{{ remote_user }}"
+    mode: 0400
+

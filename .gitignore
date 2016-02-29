@@ -1,0 +1,10 @@
+.envrc
+.vagrant
+.idea
+*.bak
+.DS_Store
+.loadpath
+.project
+.settings/
+.ruby-version
+.rbenv-gemsets

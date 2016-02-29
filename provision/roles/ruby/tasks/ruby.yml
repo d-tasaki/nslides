@@ -1,0 +1,58 @@
+---
+
+- name: Install rbenv
+  git: >
+    repo=https://github.com/sstephenson/rbenv.git
+    dest={{ rbenv_root }}
+
+- name: Install ruby-build
+  git: >
+    repo=https://github.com/sstephenson/ruby-build.git
+    dest={{ rbenv_root }}/plugins/ruby-build/
+
+- name: Set rbenv env file
+  become: yes
+  copy: src=roles/ruby/files/rbenv.sh dest=/etc/profile.d mode=0644
+
+- name: create rbenv group
+  become: yes
+  group: name=rbenv state=present
+
+- name: add user to rbenv group
+  become: yes
+  user: name={{ remote_user }} append=yes groups=rbenv
+  register: add_group
+
+- name: create shims dir
+  become: yes
+  file: path={{ rbenv_root }}/shims state=directory
+
+- name: create versions dir
+  become: yes
+  file: path={{ rbenv_root }}/versions state=directory
+
+- name: change owner of install dir
+  become: yes
+  command: chgrp -R rbenv {{ rbenv_root }}
+
+- name: change mode of install dir
+  become: yes
+  command: chmod -R g+rwxXs {{ rbenv_root }}
+
+- shell: CONFIGURE_OPTS=--disable-install-rdoc rbenv install -v {{ ruby_version }}
+  args:
+    creates: "{{ rbenv_root }}/versions/{{ ruby_version }}/bin/ruby"
+  become: no
+
+- shell: rbenv rehash
+  become: no
+
+- shell: rbenv global {{ ruby_version }}
+  become: no
+
+# おまけに開発に必要なパッケージをinstall
+- yum: name={{item}} state=latest
+  with_items:
+    - ruby-devel
+    - rubygems
+    - patch

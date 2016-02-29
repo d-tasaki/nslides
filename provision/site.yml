@@ -1,0 +1,33 @@
+---
+
+- name: setup aws resources
+  hosts: localhost
+  connection: local
+  roles:
+    - security_group
+#    - iam
+    - ec2
+    - rds
+  vars:
+    ami_image: ami-383c1956
+    key_name: nslides01
+    group_name: application
+    instance_type: t2.micro
+    device_name: /dev/xvda
+    volume_type: gp2
+    volume_size: 30
+
+- hosts: tag_Name_application
+  remote_user: ec2-user
+  become: yes
+  roles:
+    - mysql
+    - ruby
+    - panel_base
+  vars:
+    db_host: "{{ groups.rds[0] }}"
+
+- hosts: tag_Name_application
+  remote_user: ec2-user
+  become: no
+  roles:
