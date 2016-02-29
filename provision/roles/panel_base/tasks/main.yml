@@ -9,10 +9,10 @@
     mode: 0775
   with_items:
     - /app/nslides/panel/shared/config
-    - /app/nslides/panel/shared/temp/pids
-    - /app/nslides/panel/shared/temp/sockets
-    - /app/nslides/panel/shared/temp/cache
-    - /app/nslides/panel/shared/temp/sessions
+    - /app/nslides/panel/shared/tmp/pids
+    - /app/nslides/panel/shared/tmp/sockets
+    - /app/nslides/panel/shared/tmp/cache
+    - /app/nslides/panel/shared/tmp/sessions
     - /app/nslides/panel/shared/log
     - /app/nslides/panel/shared/vendor/bundle
 
