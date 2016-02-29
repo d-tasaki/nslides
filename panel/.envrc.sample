@@ -1,0 +1,6 @@
+if [ -f ../.envrc ]; then
+  source_env ..
+fi
+
+export PATH=bin:$PATH
+
