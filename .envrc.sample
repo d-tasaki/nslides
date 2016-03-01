@@ -4,4 +4,5 @@ export AWS_ACCESS_KEY_ID=アクセスキー
 export AWS_SECRET_ACCESS_KEY=シークレットキー
 export DB_USERNAME=データベースユーザー名
 export DB_PASSWORD=データベースパスワード
-
+export APP_SERVER_IP=capistranoでデプロイする先のAPPサーバーIP
+export SECRET_KEY_BASE=APPサーバーのRailsで利用するsecrets.ymlの設定値

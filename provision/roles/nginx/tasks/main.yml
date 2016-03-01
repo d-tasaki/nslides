@@ -1,0 +1,21 @@
+---
+
+- yum: name={{item}} state=latest
+  with_items:
+    - nginx
+
+- name: create setting directories
+  become: yes
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/nginx/sites-available
+    - /etc/nginx/sites-enabled
+
+- name: service登録
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+

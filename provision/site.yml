@@ -21,6 +21,8 @@
   remote_user: ec2-user
   become: yes
   roles:
+    - sudo
+    - nginx
     - mysql
     - ruby
     - panel_base

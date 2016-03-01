@@ -7,7 +7,13 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
+server ENV['APP_SERVER_IP'], user: 'ec2-user', roles: [:web, :app]
 
+set :ssh_options, {
+  keys: %w(/Users/d-tasaki/.ssh/nslides01.pem),
+  forward_agent: false,
+  auth_methods: %w(publickey password)
+}
 
 # role-based syntax
 # ==================

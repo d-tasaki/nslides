@@ -33,11 +33,13 @@
 
 - name: change owner of install dir
   become: yes
-  command: chgrp -R rbenv {{ rbenv_root }}
+  command: chown -R {{ remote_user }}.rbenv {{ rbenv_root }}
+  changed_when: no
 
 - name: change mode of install dir
   become: yes
   command: chmod -R g+rwxXs {{ rbenv_root }}
+  changed_when: no
 
 - shell: CONFIGURE_OPTS=--disable-install-rdoc rbenv install -v {{ ruby_version }}
   args:
@@ -46,9 +48,11 @@
 
 - shell: rbenv rehash
   become: no
+  changed_when: no
 
 - shell: rbenv global {{ ruby_version }}
   become: no
+  changed_when: no
 
 # おまけに開発に必要なパッケージをinstall
 - yum: name={{item}} state=latest
@@ -56,3 +60,17 @@
     - ruby-devel
     - rubygems
     - patch
+
+- name: install gems
+  become: yes
+  gem:
+    name: bundler
+    state: latest
+    executable: "{{ rbenv_root }}/shims/gem"
+    user_install: False
+
+- name: change owner of install dir again
+  become: yes
+  command: chown -R {{ remote_user }}.rbenv {{ rbenv_root }}
+  changed_when: no
+

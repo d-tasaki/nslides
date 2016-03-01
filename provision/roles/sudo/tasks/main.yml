@@ -1,0 +1,7 @@
+- name: ttyなしでsudoできるようにする
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    backrefs: yes
+    regexp: '^#?\s*Defaults\s*requiretty'
+    line: '# Defaults requiretty'
