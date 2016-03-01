@@ -1,0 +1,9 @@
+---
+
+- name: S3バケツの作成
+  s3:
+    bucket: "{{ item }}"
+    mode: create
+  with_items:
+    - nslides01-pages
+    - nslides01-assets

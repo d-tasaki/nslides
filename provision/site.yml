@@ -8,6 +8,7 @@
 #    - iam
     - ec2
     - rds
+    - s3
   vars:
     ami_image: ami-383c1956
     key_name: nslides01
