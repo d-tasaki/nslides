@@ -4,6 +4,11 @@
   with_items:
     - nginx
 
+- name: create nginx.conf
+  copy:
+    src: roles/nginx/files/nginx.conf
+    dest: /etc/nginx/nginx.conf
+
 - name: create setting directories
   become: yes
   file:
@@ -12,6 +17,15 @@
   with_items:
     - /etc/nginx/sites-available
     - /etc/nginx/sites-enabled
+
+- name: change log_dir permission
+  become: yes
+  file:
+    path: /var/log/nginx
+    state: directory
+    owner: nginx
+    group: nginx
+    mode: 0755
 
 - name: service登録
   service:

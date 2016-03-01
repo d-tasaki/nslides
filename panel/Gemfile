@@ -22,12 +22,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'puma'
 
 gem 'hamlit'
-
+gem 'redis'
 gem 'react-rails', '~> 1.5.0'
 gem 'react-bootstrap-rails', github: 'devchick/react-bootstrap-rails'
-
 gem 'rmagick'
-
 gem 'dotenv-rails'
 
 # Use ActiveModel has_secure_password

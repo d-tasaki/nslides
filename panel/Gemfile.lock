@@ -233,6 +233,7 @@ GEM
       execjs
       rails (>= 3.2)
       tilt
+    redis (3.2.2)
     ref (2.0.0)
     rmagick (2.15.4)
     rspec-core (3.1.7)
@@ -341,6 +342,7 @@ DEPENDENCIES
   rails-flog
   react-bootstrap-rails!
   react-rails (~> 1.5.0)
+  redis
   rmagick
   rspec-rails
   rubocop
