@@ -3,6 +3,7 @@
 - name: S3バケツの作成
   s3:
     bucket: "{{ item }}"
+    region: "{{ region }}"
     mode: create
   with_items:
     - nslides01-pages

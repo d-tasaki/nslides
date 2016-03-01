@@ -7,7 +7,7 @@
     db_engine: MySQL
     size: 20
     instance_type: db.t2.micro
-    region: ap-northeast-1
+    region: "{{ region }}"
     multi_zone: no
     username: "{{ db_username }}"
     password: "{{ db_password }}"

@@ -17,7 +17,7 @@ var ActionBox = React.createClass({
     render() {
         var buttons = this.props.default_comments.map(
             (default_comment, index) => (
-                <Button key={index} bsStyle="info" bsSize="large" onClick={this.addComment} >{default_comment}</Button>
+                <Button key={index} bsStyle="info" onClick={this.addComment} >{default_comment}</Button>
             )
         );
 

@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224105010) do
+ActiveRecord::Schema.define(version: 20160301132831) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "slide_id"
-    t.integer  "image_id"
+    t.integer  "page_id"
     t.integer  "recorded_time"
     t.text     "body",          limit: 65535
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.index ["image_id"], name: "index_comments_on_image_id", using: :btree
+    t.index ["page_id"], name: "index_comments_on_image_id", using: :btree
     t.index ["slide_id"], name: "index_comments_on_slide_id", using: :btree
   end
 
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20160224105010) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "status"
   end
 
 end

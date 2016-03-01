@@ -25,10 +25,17 @@ class SlidesController < ApplicationController
   # POST /slides
   # POST /slides.json
   def create
-    @slide = Slide.new(slide_params)
+    file_path = "/tmp/#{File.basename(slide_params[:file].tempfile.path)}"
+    File.open(file_path, 'wb') do |f|
+      data = slide_params[:file].read
+      f.write(data)
+    end
+    @slide = Slide.new(title: slide_params[:title], status: :queued)
 
     respond_to do |format|
       if @slide.save
+        SlideParseJob.perform_later(@slide, file_path)
+
         format.html { redirect_to @slide, notice: 'Slide was successfully created.' }
         format.json { render :show, status: :created, location: @slide }
       else

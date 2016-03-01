@@ -1,6 +1,6 @@
 div.comment_box {
     width:    800px;
-    height:   600px;
+    height:   100%;
     overflow: hidden;
     position: absolute;
     top:      0px;

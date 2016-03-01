@@ -1,14 +1,23 @@
+div.page {
+    height: 600px;
+}
+
+div.page.page-wide {
+    height: 450px;
+}
+
 div.page img {
     position: absolute;
     top:      0px;
     left:     0px;
     z-index:  5;
+    border:   #eee 1px solid;
 }
 
 div.page .prevPage,
 div.page .nextPage {
     width:    300px;
-    height:   600px;
+    height:   100%;
     position: absolute;
     z-index:  20;
     opacity:  0;
