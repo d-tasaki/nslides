@@ -33,6 +33,7 @@
   with_items:
     - { src: database.yml.j2, dst: config/database.yml }
     - { src: secrets.yml.j2,  dst: config/secrets.yml  }
+    - { src: cable.yml.j2,    dst: config/cable.yml    }
     - { src: dotenv.j2,       dst: .env  }
 
 - name: Bitbucketアクセス用SSH鍵の配置

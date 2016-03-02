@@ -13,13 +13,6 @@ GIT
       capistrano (~> 3.0)
       puma (>= 2.6)
 
-GIT
-  remote: git://github.com/takuyan/capistrano-delayed_job.git
-  revision: d17b8c9d4210067771f06695add2dc0db7cd7b34
-  specs:
-    capistrano-delayed_job (0.0.2)
-      capistrano
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -103,6 +96,9 @@ GEM
     capistrano-rbenv (2.0.4)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
+    capistrano-sidekiq (0.5.4)
+      capistrano
+      sidekiq (>= 3.4)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -270,6 +266,10 @@ GEM
     sexp_processor (4.7.0)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    sidekiq (4.1.0)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     slop (3.6.0)
     spring (1.6.3)
     spring-commands-rspec (1.0.4)
@@ -323,9 +323,9 @@ DEPENDENCIES
   byebug
   capistrano
   capistrano-bundler
-  capistrano-delayed_job!
   capistrano-rails
   capistrano-rbenv
+  capistrano-sidekiq
   capistrano3-puma!
   coffee-rails (~> 4.1.0)
   database_cleaner
@@ -355,6 +355,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   shoulda-matchers
+  sidekiq
   spring
   spring-commands-rspec
   test-queue

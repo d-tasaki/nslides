@@ -28,6 +28,7 @@ gem 'react-bootstrap-rails', github: 'devchick/react-bootstrap-rails'
 gem 'rmagick'
 gem 'dotenv-rails'
 gem 'aws-sdk'
+gem 'sidekiq'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -76,6 +77,6 @@ group :deployment do
   gem 'capistrano-rails', require: false
   gem 'capistrano-rbenv', require: false
   gem 'capistrano-bundler', require: false
-  gem 'capistrano-delayed_job', github: 'takuyan/capistrano-delayed_job', require: false
-  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma", require: false
+  gem 'capistrano-sidekiq', require: false
 end
