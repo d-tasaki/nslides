@@ -4,7 +4,7 @@ class SlidesController < ApplicationController
   # GET /slides
   # GET /slides.json
   def index
-    @slides = Slide.all
+    @slides = Slide.not_deleted.all
   end
 
   # GET /slides/1
@@ -32,16 +32,9 @@ class SlidesController < ApplicationController
     end
     @slide = Slide.new(title: slide_params[:title], status: :queued)
 
-    respond_to do |format|
-      if @slide.save
-        SlideParseJob.perform_later(@slide, file_path)
-
-        format.html { redirect_to @slide, notice: 'Slide was successfully created.' }
-        format.json { render :show, status: :created, location: @slide }
-      else
-        format.html { render :new }
-        format.json { render json: @slide.errors, status: :unprocessable_entity }
-      end
+    if @slide.save
+      SlideParseJob.perform_later(@slide, file_path)
+      redirect_to action: :index
     end
   end
 
@@ -72,7 +65,7 @@ class SlidesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_slide
-      @slide = Slide.find(params[:id])
+      @slide = Slide.not_deleted.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

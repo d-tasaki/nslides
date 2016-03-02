@@ -9,6 +9,10 @@ class Slide < ApplicationRecord
   ]
 
   scope :enabled, -> { where(status: :enabled) }
-  scope :not_deleted, -> { where() }
+  scope :not_deleted, -> { where(status: VALID_STATUSES.reject { |st| st == :deleted }) }
+
+  def enabled?
+    self.status == "enabled".freeze
+  end
 
 end

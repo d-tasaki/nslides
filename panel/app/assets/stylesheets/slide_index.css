@@ -1,0 +1,12 @@
+div.slide_index table {
+    border: 1px solid #eee;
+}
+
+div.slide_index thead, div.slide_index tbody {
+    vertical-align: middle;
+}
+
+div.slide_index th, div.slide_index td {
+    padding: 5px;
+    border: 1px solid #eee;
+}

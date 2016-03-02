@@ -1,5 +1,5 @@
-# pumaのリッスンポート
-#PORT=80
-
 # production用secrets
 SECRET_KEY_BASE={{ lookup('env', 'SECRET_KEY_BASE') }}
+
+# S3などへのアクセス用
+AWS_REGION={{ lookup('env', 'AWS_REGION') }}
