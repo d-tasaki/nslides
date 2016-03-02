@@ -237,6 +237,8 @@ GEM
       rails (>= 3.2)
       tilt
     redis (3.2.2)
+    redis-namespace (1.5.2)
+      redis (~> 3.0, >= 3.0.4)
     ref (2.0.0)
     rmagick (2.15.4)
     rspec-core (3.1.7)
@@ -351,6 +353,7 @@ DEPENDENCIES
   react-bootstrap-rails!
   react-rails (~> 1.5.0)
   redis
+  redis-namespace
   rmagick
   rspec-rails
   rubocop

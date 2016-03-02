@@ -23,6 +23,7 @@ gem 'puma'
 
 gem 'hamlit'
 gem 'redis'
+gem 'redis-namespace'
 gem 'react-rails', '~> 1.5.0'
 gem 'react-bootstrap-rails', github: 'devchick/react-bootstrap-rails'
 gem 'rmagick'
