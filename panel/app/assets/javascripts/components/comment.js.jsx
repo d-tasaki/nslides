@@ -19,11 +19,22 @@ var Comment = React.createClass({
             <span className="comment" style={{top: top}}>
               <ReactCSSTransitionGroup transitionName="comment" transitionAppear={true} transitionAppearTimeout={5000} transitionEnter={false} transitionLeave={false} >
                 <span key={"comment_" + this.props.comment.id}>
-                  {this.props.comment.body}
+                  {this.nl2br(this.props.comment.body)}
                 </span>
               </ReactCSSTransitionGroup>
             </span>
         );
+    },
+
+    nl2br(text) {
+        var regex = /(\n)/g;
+        return text.split(regex).map((line) => {
+            if (line.match(regex)) {
+                return React.createElement('br');
+            } else {
+                return line;
+            }
+        });
     },
 
     // getDefaultProps() {

@@ -28,7 +28,7 @@ var ActionBox = React.createClass({
                 {buttons}
               </ButtonToolbar>
               <form>
-                <Input type="text" onSubmit={ this.addComment } placeholder="コメント" />
+                <Input type="textarea" onSubmit={ this.addComment } placeholder="コメント" rows={1} />
                 <ButtonInput type="submit" onClick={ this.addComment } value="コメントする" bsStyle="warning" />
               </form>
             </div>

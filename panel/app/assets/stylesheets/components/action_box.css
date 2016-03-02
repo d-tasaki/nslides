@@ -5,6 +5,10 @@ div.action_box {
     margin: 0 auto;
 }
 
+div.action_box div.form-group {
+    vertical-align: top;
+}
+
 div.action_box button {
     margin-bottom: 5px;
 }
@@ -14,7 +18,8 @@ div.action_box form div {
     margin-top: 5px;
 }
 
-div.action_box input[type="text"] {
+div.action_box textarea {
+    display: inline-block;
     width: 660px;
 }
 
