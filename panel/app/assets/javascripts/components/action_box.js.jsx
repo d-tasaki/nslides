@@ -5,12 +5,12 @@ var ActionBox = React.createClass({
         return {
             default_comments: [
                 "うｐ乙",
-                "ちょwwwwwwwwwwwwwwwwwww",
+                "ちょwwwwwwwwww",
                 "みっくみっくにしてあげる〜♪",
                 "にっこにっこにー",
                 "ざわ…ざわ…",
                 "バルス!!!!!!",
-                "88888888888888888888888"
+                "88888888888"
             ]
         };
     },
@@ -18,7 +18,7 @@ var ActionBox = React.createClass({
     render() {
         var buttons = this.props.default_comments.map(
             (default_comment, index) => (
-                <Button key={index} bsStyle="info" onClick={this.addComment} >{default_comment}</Button>
+                <Button key={index} bsStyle="info" bsSize="small" onClick={this.addComment} >{default_comment}</Button>
             )
         );
 
