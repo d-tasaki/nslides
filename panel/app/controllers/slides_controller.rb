@@ -26,8 +26,8 @@ class SlidesController < ApplicationController
   # POST /slides.json
   def create
     file_path = "/tmp/#{File.basename(slide_params[:file].tempfile.path)}"
+    data = slide_params[:file].read
     File.open(file_path, 'wb') do |f|
-      data = slide_params[:file].read
       f.write(data)
     end
     @slide = Slide.new(title: slide_params[:title], status: :queued)
