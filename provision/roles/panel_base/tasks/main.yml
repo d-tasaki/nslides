@@ -1,6 +1,9 @@
 ---
 
-- yum: name={{item}} state=latest
+- name: yumパッケージ追加
+  yum:
+    name: "{{ item }}"
+    state: latest
   with_items:
     - ImageMagick
     - ImageMagick-devel
