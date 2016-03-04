@@ -26,6 +26,15 @@
     - /app/nslides/panel/shared/log
     - /app/nslides/panel/shared/vendor/bundle
 
+- name: 環境設定
+  become: yes
+  template:
+    src:  "{{ item.src }}"
+    dest: "{{ item.dst }}"
+    mode: 0644
+  with_items:
+    - { src: panel_encs.sh.j2, dst: /etc/profile.d/panel_envs.sh }
+
 - name: 設定ファイル作成
   template:
     src: "{{ item.src }}"
@@ -37,7 +46,6 @@
     - { src: database.yml.j2, dst: config/database.yml }
     - { src: secrets.yml.j2,  dst: config/secrets.yml  }
     - { src: cable.yml.j2,    dst: config/cable.yml    }
-    - { src: dotenv.j2,       dst: .env  }
 
 - name: Bitbucketアクセス用SSH鍵の配置
   copy:

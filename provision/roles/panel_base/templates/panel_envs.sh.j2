@@ -1,0 +1,11 @@
+# production用secrets
+export SECRET_KEY_BASE={{ lookup('env', 'SECRET_KEY_BASE') }}
+
+# S3などへのアクセス用
+export AWS_REGION={{ lookup('env', 'AWS_REGION') }}
+
+# redisの場所
+export REDIS_ENDPOINT={{ lookup('env', 'REDIS_ENDPOINT') }}
+
+# GoogleAnalyticsのトラッカーID
+export GOOGLE_ANALITICS_TRACKER_ID={{ lookup('env', 'GOOGLE_ANALITICS_TRACKER_ID') }}
