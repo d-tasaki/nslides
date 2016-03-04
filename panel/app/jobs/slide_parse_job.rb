@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class SlideParseJob < ApplicationJob
   queue_as :default
 
@@ -5,7 +6,12 @@ class SlideParseJob < ApplicationJob
     s3 = Aws::S3::Resource.new
     bucket = s3.bucket('nslides01-pages')
 
-    images = Magick::Image.from_blob(File.open(file).read)
+    images = Magick::Image.from_blob(File.open(file).read) do
+      # 2000pxでサンプリングして800pxの画像に変換
+      self.density  = 200
+      self.geometry = 800
+    end
+
     images.each_with_index do |img, index|
       img.format = 'PNG'
       png_data = img.to_blob
