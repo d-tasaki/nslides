@@ -33,7 +33,7 @@
     dest: "{{ item.dst }}"
     mode: 0644
   with_items:
-    - { src: panel_encs.sh.j2, dst: /etc/profile.d/panel_envs.sh }
+    - { src: panel_envs.sh.j2, dst: /etc/profile.d/panel_envs.sh }
 
 - name: 設定ファイル作成
   template:
