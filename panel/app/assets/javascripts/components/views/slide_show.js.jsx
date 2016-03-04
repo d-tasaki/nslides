@@ -26,7 +26,7 @@ var SlideShow = React.createClass({
 
         return (
             <div className="slide_show">
-              <TopMenue />
+              <TopMenu />
               <SlideBox slide={this.state.slide} current_page={current_page} comments={this.state.comments} getElapsedTime={this.getElapsedTime} />
               <ActionBox current_page={current_page} getElapsedTime={this.getElapsedTime} />
             </div>
