@@ -1,9 +1,9 @@
 var { Navbar, Nav, NavItem, Glyphicon } = ReactBootstrap;
 
-var TopMenue = React.createClass({
+var TopMenu = React.createClass({
     render: function() {
         return (
-            <div className="topMenue">
+            <div className="topMenu">
               <Navbar inverse fixedTop={true}>
                 <Navbar.Header>
                   <Navbar.Brand>nslides</Navbar.Brand>

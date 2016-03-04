@@ -11,8 +11,16 @@ class Slide < ApplicationRecord
   scope :enabled, -> { where(status: :enabled) }
   scope :not_deleted, -> { where(status: VALID_STATUSES.reject { |st| st == :deleted }) }
 
+  def as_json(options = {})
+    super(options.merge(methods: [:thumbnail_src]))
+  end
+
   def enabled?
     self.status == "enabled".freeze
+  end
+
+  def thumbnail_src
+    self.pages.first.try(:image_src)
   end
 
 end
