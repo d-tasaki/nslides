@@ -18,11 +18,11 @@
 .comment-enter.comment-enter-active {
     position:           absolute;
     left:               -600px;
-    transition:         left 7s linear 1s;
-    -moz-transition:    left 7s linear 1s;
-    -webkit-transition: left 7s linear 1s;
-    -o-transition:      left 7s linear 1s;
-    -ms-transition:     left 7s linear 1s;
+    transition:         left 6s linear 1s;
+    -moz-transition:    left 6s linear 1s;
+    -webkit-transition: left 6s linear 1s;
+    -o-transition:      left 6s linear 1s;
+    -ms-transition:     left 6s linear 1s;
 }
 
 .comment-leave {
