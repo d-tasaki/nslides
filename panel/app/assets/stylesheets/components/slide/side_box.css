@@ -1,9 +1,9 @@
-div.comment_box {
-    width:    600px;
+div.sideBox {
+    width:    300px;
     height:   100%;
     overflow: hidden;
     position: absolute;
     top:      0px;
-    left:     0px;
+    left:     605px;
     z-index:  10;
 }

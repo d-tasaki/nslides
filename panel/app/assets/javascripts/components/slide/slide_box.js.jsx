@@ -3,7 +3,8 @@ var SlideBox = React.createClass({
         return (
             <div className="slide_box">
               <Page current_page={this.props.current_page} />
-              <CommentBox comments={this.getCommentsForCurrentPage()} getElapsedTime={this.props.getElapsedTime}/>
+              <CommentBox comments={this.getCommentsForCurrentPage()} getElapsedTime={this.props.getElapsedTime} />
+              <SideBox comments={this.getCommentsForCurrentPage()} getElapsedTime={this.props.getElapsedTime} />
             </div>
         );
     },

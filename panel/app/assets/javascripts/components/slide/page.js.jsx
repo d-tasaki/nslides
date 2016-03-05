@@ -7,7 +7,7 @@ var Page = React.createClass({
 
         return (
             <div className={page_class}>
-              <img src={this.props.current_page.image_src} width={800} />
+              <img src={this.props.current_page.image_src} width={600} />
               <div className="prevPage" onClick={this.prevPage} />
               <div className="nextPage" onClick={this.nextPage} />
             </div>

@@ -1,9 +1,9 @@
 div.page {
-    height: 600px;
+    height: 450px;
 }
 
 div.page.page-wide {
-    height: 450px;
+    height: 338px;
 }
 
 div.page img {
@@ -16,7 +16,7 @@ div.page img {
 
 div.page .prevPage,
 div.page .nextPage {
-    width:    300px;
+    width:    250px;
     height:   100%;
     position: absolute;
     z-index:  20;
@@ -31,5 +31,5 @@ div.page .prevPage {
 
 div.page .nextPage {
     top:  0px;
-    left: 500px;
+    left: 350px;
 }

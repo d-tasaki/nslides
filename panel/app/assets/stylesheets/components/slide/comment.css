@@ -1,28 +1,28 @@
 .comment {
     white-space: nowrap;
     color:       #fff;
-    text-shadow: -1px 1px 3px #000;
+    text-shadow: -1px 1px 4px #000;
     font-size:   30px;
     display:     inline-block;
     position:    absolute;
-    left:        -500px;
+    left:        -600px;
 }
 
 .comment-appear,
 .comment-enter {
     position: absolute;
-    left:     1400px;
+    left:     1200px;
 }
 
 .comment-appear.comment-appear-active,
 .comment-enter.comment-enter-active {
     position:           absolute;
-    left:               -500px;
-    transition:         left 5s linear 1s;
-    -moz-transition:    left 5s linear 1s;
-    -webkit-transition: left 5s linear 1s;
-    -o-transition:      left 5s linear 1s;
-    -ms-transition:     left 5s linear 1s;
+    left:               -600px;
+    transition:         left 7s linear 1s;
+    -moz-transition:    left 7s linear 1s;
+    -webkit-transition: left 7s linear 1s;
+    -o-transition:      left 7s linear 1s;
+    -ms-transition:     left 7s linear 1s;
 }
 
 .comment-leave {
