@@ -28,11 +28,18 @@ var ActionBox = React.createClass({
                 {buttons}
               </ButtonToolbar>
               <form>
-                <Input type="textarea" onSubmit={ this.addComment } placeholder="コメント" rows={1} />
+                <Input type="textarea" onKeyDown={ this.keyDown } placeholder="コメント" rows={1} />
                 <ButtonInput type="submit" onClick={ this.addComment } value="コメントする" bsStyle="warning" />
               </form>
             </div>
         );
+    },
+
+    keyDown(event) {
+        if (event.keyCode == 13 && !event.shiftKey) {
+            // ShiftキーなしのEnterキーが押された場合
+            this.addComment(event);
+        }
     },
 
     addComment(event) {
@@ -44,6 +51,8 @@ var ActionBox = React.createClass({
             recorded_time: this.props.getElapsedTime()
         };
         if (comment.body) App.slide.addComment(comment);
+        event.target.textContent = "";
+        event.target.form[0].value = "";
     },
 
     none: undefined
