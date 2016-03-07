@@ -12,7 +12,7 @@ var Comment = React.createClass({
     },
 
     render() {
-        var top = (this.props.comment.id % 10) * 300.0 / 10.0 + "px";
+        var top = (this.props.comment.id % 10) * 330.0 / 12.0 + "px";
         return (
             <span className="comment" style={{top: top}}>
               <ReactCSSTransitionGroup transitionName="comment" transitionAppear={true} transitionAppearTimeout={6000} transitionEnter={false} transitionLeave={false} >
