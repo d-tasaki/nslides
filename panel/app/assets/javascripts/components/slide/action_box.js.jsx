@@ -24,13 +24,13 @@ var ActionBox = React.createClass({
 
         return (
             <div className="action_box">
-              <ButtonToolbar>
-                {buttons}
-              </ButtonToolbar>
               <form>
                 <Input type="textarea" onKeyDown={ this.keyDown } placeholder="コメント" rows={1} />
                 <ButtonInput type="submit" onClick={ this.addComment } value="コメントする" bsStyle="warning" />
               </form>
+              <ButtonToolbar>
+                {buttons}
+              </ButtonToolbar>
             </div>
         );
     },
