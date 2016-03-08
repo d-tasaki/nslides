@@ -1,5 +1,1 @@
-%h1 Editing Slide
-= render 'form', slide: @slide
-= link_to 'Show', @slide
-|
-= link_to 'Back', slides_path
+= react_component('SlideNew', { slide: @slide, authenticity_token: form_authenticity_token } )

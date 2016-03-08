@@ -43,7 +43,7 @@ class SlidesController < ApplicationController
   def update
     respond_to do |format|
       if @slide.update(slide_params)
-        format.html { redirect_to @slide, notice: 'Slide was successfully updated.' }
+        format.html { redirect_to action: :index }
         format.json { render :show, status: :ok, location: @slide }
       else
         format.html { render :edit }
@@ -70,6 +70,6 @@ class SlidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def slide_params
-      params.fetch(:slide, {})
+      params.fetch(:slide, {}).permit(:title, :file)
     end
 end
