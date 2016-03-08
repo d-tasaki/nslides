@@ -7,12 +7,12 @@ class SlideParseJob < ApplicationJob
     bucket = s3.bucket('nslides01-pages')
 
     images = Magick::Image.from_blob(File.open(file).read) do
-      # 2000pxでサンプリングして800pxの画像に変換
+      # 2000pxでサンプリング
       self.density  = 200
-      self.geometry = 800
     end
 
     images.each_with_index do |img, index|
+      img.resize_to_fit!(800, 600)
       img.format = 'PNG'
       png_data = img.to_blob
       name = SecureRandom.hex
