@@ -51,8 +51,7 @@ var ActionBox = React.createClass({
             recorded_time: this.props.getElapsedTime()
         };
         if (comment.body) App.slide.addComment(comment);
-        event.target.textContent = "";
-        event.target.form[0].value = "";
+        if (event.target.form) event.target.form[0].value = "";
     },
 
     none: undefined
