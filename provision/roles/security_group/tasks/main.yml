@@ -28,18 +28,3 @@
         to_port:   65535
         cidr_ip:   0.0.0.0/0
 
-- name: ElastiCache用セキュリティグループを作成
-  ec2_group:
-    name: "redis"
-    description: "redis"
-    region: ap-northeast-1
-    rules:
-      - proto: tcp
-        from_port: 6379
-        to_port:   6379
-        cidr_ip:   0.0.0.0/0
-    rules_egress:
-      - proto: all
-        from_port: 0
-        to_port:   65535
-        cidr_ip:   0.0.0.0/0

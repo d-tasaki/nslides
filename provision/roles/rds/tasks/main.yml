@@ -3,7 +3,7 @@
 - name: RDSインスタンスを作成
   rds:
     command: create
-    instance_name: nslides01
+    instance_name: "{{ service_name }}"
     db_engine: MySQL
     size: 20
     instance_type: db.t2.micro

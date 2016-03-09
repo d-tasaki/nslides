@@ -6,5 +6,5 @@
     region: "{{ region }}"
     mode: create
   with_items:
-    - nslides01-pages
-    - nslides01-assets
+    - "{{ service_name }}-pages"
+    - "{{ service_name }}-assets"

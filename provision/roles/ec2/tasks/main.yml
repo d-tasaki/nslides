@@ -5,7 +5,7 @@
     image: "{{ ami_image }}"
     instance_type: "{{ instance_type }}"
     region: "{{ region }}"
-    key_name: "{{ key_name }}"
+    key_name: "{{ service_name }}"
     group: "{{ group_name }}"
     instance_tags:
       Name: "{{ group_name }}"

@@ -5,11 +5,13 @@
   connection: local
   roles:
     - security_group
+    - elasticache
 #    - iam
     - ec2
     - rds
     - s3
   vars:
+    service_name: nslides01
     ami_image: ami-383c1956
     key_name: nslides01
     group_name: application
