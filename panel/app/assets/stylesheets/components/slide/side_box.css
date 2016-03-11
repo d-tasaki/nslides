@@ -7,3 +7,50 @@ div.sideBox {
     left:     605px;
     z-index:  10;
 }
+
+div.sideBox div.form-group label.inline-item {
+    display: inline-block;
+    margin-left: 10px;
+    font-weight: 100;
+}
+
+div.sideBox div.form-group span {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+div.sideBox table {
+    font-size: 6px;
+    margin-left: 10px;
+    width: 290px;
+}
+
+div.sideBox thead, div.sideBox tbody {
+    display: block;
+}
+
+div.sideBox tbody {
+    overflow-y: scroll;
+    height: 280px;
+}
+
+div.sideBox td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.sideBox td.recordedTime {
+    width:     50px;
+    max-width: 50px;
+}
+
+div.sideBox td.userName {
+    width:     70px;
+    max-width: 70px;
+}
+
+div.sideBox td.commentBody {
+    width:     170px;
+    max-width: 170px;
+}

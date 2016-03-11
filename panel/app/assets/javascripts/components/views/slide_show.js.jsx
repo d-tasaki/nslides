@@ -4,6 +4,7 @@ var SlideShow = React.createClass({
             started_at: (new Date).getTime(),
             current_page_num: this.props.current_page_num,
             elapsed_time: 0,
+            acts_as: "viewer",
 
             slide: this.props.slide,
             pages: this.props.pages,
@@ -27,7 +28,13 @@ var SlideShow = React.createClass({
         return (
             <div className="slide_show">
               <TopMenu />
-              <SlideBox slide={this.state.slide} current_page={current_page} comments={this.state.comments} getElapsedTime={this.getElapsedTime} />
+              <SlideBox
+                 slide={this.state.slide}
+                 current_page={current_page}
+                 comments={this.state.comments}
+                 acts_as={this.state.acts_as}
+                 setActsAs={this.setActsAs}
+                 getElapsedTime={this.getElapsedTime} />
               <ActionBox current_page={current_page} getElapsedTime={this.getElapsedTime} />
             </div>
         );
@@ -82,7 +89,7 @@ var SlideShow = React.createClass({
             data: { page_num: this.state.current_page_num },
             dataType: "json"
         }).done(
-            (data) => { console.log("Successed to fetch comments", data); this.setState(this.mergeData(data)); }
+            (data) => { this.setState(this.mergeData(data)); }
         ).fail(
             (data) => { console.log("Failed to fetch comments", data); }
         );
@@ -99,7 +106,6 @@ var SlideShow = React.createClass({
         }
         if (data.current_page_num) {
             ret.current_page_num = data.current_page_num;
-//            if (this.state.current_page_num != data.current_page_num) this.fetchComments();
         }
         if (data.started_at) {
             ret.started_at = data.started_at;
@@ -158,7 +164,7 @@ var SlideShow = React.createClass({
                     return ret.concat(comment);
                 }
             },
-            this.state.comments || []);
+            this.state.comments || []).sort((a, b) => (b.recorded_time - a.recorded_time));
     },
 
     getPage(options) {
@@ -181,6 +187,18 @@ var SlideShow = React.createClass({
 
     updateElapsedTime() {
         this.setState({elapsed_time: this.getElapsedTime()});
+    },
+
+    setActsAs(acts_as) {
+        switch(acts_as) {
+        case "presenter":
+        case "audience":
+        case "viewer":
+            this.setState({ acts_as });
+            break;
+        default:
+            console.log("Unkown arg for setActsAs(): #{acts_as}");
+        }
     },
 
     none: undefined
