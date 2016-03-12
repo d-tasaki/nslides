@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   before_action :set_slide, only: [:index, :show]
   before_action :set_pages, only: [:index, :show]
-  before_action :set_page,  only: [:show]
 
   # GET /slides/:slide_id/pages
   # GET /slides/:slide_id/pages.json
@@ -21,10 +20,6 @@ class PagesController < ApplicationController
 
   def set_pages
     @pages = @slide.pages
-  end
-
-  def set_page
-    @page = @slide.pages.where(num: params[:id]).first
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

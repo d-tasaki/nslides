@@ -54,8 +54,13 @@ var SlideShow = React.createClass({
                 },
 
                 // ActionCableが受信したときのコールバック
-                received(data) {
-                    console.log("recieved!", data);
+                received(data, locally=false) {
+                    if (!locally && this.state.acts_as == "viewer") {
+                        // サーバーからの通知かつ閲覧者モードの場合はページ遷移イベントを無視
+                        delete data.current_page_num;
+                        delete data.started_at;
+                    }
+
                     var next_state = this.mergeData(data);
                     var callback;
                     if (next_state.current_page_num && next_state.current_page_num != this.state.current_page_num) {
@@ -70,17 +75,47 @@ var SlideShow = React.createClass({
                 },
 
                 prevPage(current_page) {
-                    this.perform('goto_prev_page', { page_id: current_page.id });
+                    switch(this.getActsAs()) {
+                    case "presenter":
+                        // 発表者はページ遷移イベントをCable越しにサーバーへ通知
+                        this.perform('goto_prev_page', { page_id: current_page.id });
+                        break;
+                    case "audience":
+                    case "viewer":
+                    default:
+                        // 発表者以外はページ遷移イベントはクライアント内で処理する
+                        var page = this.getPage({page_num: current_page.num - 1});
+                        if (page) {
+                            this.received({ current_page_num: page.num, started_at: (new Date).getTime() }, true);
+                        }
+                    }
                 },
 
                 nextPage(current_page) {
-                    this.perform('goto_next_page', { page_id: current_page.id });
+                    switch(this.getActsAs()) {
+                    case "presenter":
+                        // 発表者はページ遷移イベントをCable越しにサーバーへ通知
+                        this.perform('goto_next_page', { page_id: current_page.id });
+                        break;
+                    case "audience":
+                    case "viewer":
+                    default:
+                        // 発表者以外はページ遷移イベントはクライアント内で処理する
+                        var page = this.getPage({page_num: current_page.num + 1});
+                        console.log("nextPage not as presenter", page);
+                        if (page) {
+                            this.received({ current_page_num: page.num, started_at: (new Date).getTime() }, true);
+                        }
+                    }
                 },
+
+                getActsAs: this.getActsAs,
+                getPage: this.getPage,
 
                 none: undefined
             }
         );
-        App.slide.received = App.slide.received.bind(this);
+        App.slide.received  = App.slide.received.bind(this);
     },
 
     fetchComments() {
@@ -112,43 +147,6 @@ var SlideShow = React.createClass({
         }
         return ret;
     },
-
-    // mergeSlide(slide_data) {
-    //     var ret = {};
-    //     for (var key in slide_data) {
-    //         if (key == "pages") {
-    //             ret[key] = this.mergePages(slide_data[key]);
-    //         } else {
-    //             ret[key] = slide_data[key];
-    //         }
-    //     }
-    //     return ret;
-    // },
-
-    // mergePages(pages_data = []) {
-    //     var ret = [];
-    //     pages_data.forEach(
-    //         (page_data) => {
-    //             var state_page = this.getPage({page_id: page_data.page_id});
-    //             if (state_page) {
-    //                 // 現在のstateにページデータが登録されている場合はマージ
-    //                 var ret_page = {};
-    //                 for (var key in page_data) {
-    //                     if (key == "comments") {
-    //                         ret_page[key] = this.mergeComments(page_data[key], state_page.comments);
-    //                     } else {
-    //                         ret_page[key] = page_data[key];
-    //                     }
-    //                 }
-    //                 ret.push(ret_page);
-    //             } else {
-    //                 // 現在のstateにページデータが登録されていない場合はまるごと追加
-    //                 ret.push(page_data);
-    //             }
-    //         }
-    //     );
-    //     return ret;
-    // },
 
     mergeComments(comments_data) {
         // 重複チェック用に現在のコメントIDを取得
@@ -187,6 +185,10 @@ var SlideShow = React.createClass({
 
     updateElapsedTime() {
         this.setState({elapsed_time: this.getElapsedTime()});
+    },
+
+    getActsAs() {
+        return this.state.acts_as;
     },
 
     setActsAs(acts_as) {
