@@ -16,7 +16,7 @@ var SlideForm = React.createClass({
             url = "/slides/" + this.props.slide.id;
         } else {
             file_form = (
-                <Input type="file" name="slide[file]" label="PDF File" help="PDFファイルをアップロードしてください。pptやkeyは事前にPDFへの変換をお願いします。" />
+                <Input type="file" name="slide[file]" label="PDF File" help="PDFファイルをアップロードしてください。公序良俗に反する資料のアップロードは禁止いたします。不適切と判断された場合は予告なく削除することがあります。" />
             );
             method = "post";
             url = "/slides/";

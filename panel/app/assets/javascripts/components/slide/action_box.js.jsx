@@ -43,7 +43,6 @@ var ActionBox = React.createClass({
     },
 
     addComment(event) {
-        console.log("addComment", event);
         event.preventDefault();
         var comment = {
             page_id:       this.props.current_page.id,

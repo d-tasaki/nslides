@@ -13,7 +13,7 @@ var SlideShow = React.createClass({
     },
 
     componentDidMount() {
-        this.createChannel();
+        this.subscriptChannel();
         this.fetchComments();
         this.interval = setInterval(this.updateElapsedTime, 200);
     },
@@ -40,8 +40,8 @@ var SlideShow = React.createClass({
         );
     },
 
-    // ActionCable用チャネルの作成
-    createChannel() {
+    // ActionCableチャネルの購読
+    subscriptChannel() {
         App.slide = App.cable.subscriptions.create(
             { channel: "SlideChannel", slide_id: this.state.slide.id },
             {
