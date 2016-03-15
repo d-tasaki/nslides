@@ -4,8 +4,8 @@
   hosts: localhost
   connection: local
   roles:
-    - elasticache
     - ec2
+    - elasticache
     - rds
     - s3
   vars:
