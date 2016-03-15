@@ -19,6 +19,7 @@
     mode: 0775
   with_items:
     - /app/nslides/panel/shared/config
+    - /app/nslides/panel/shared/config/initializers
     - /app/nslides/panel/shared/tmp/pids
     - /app/nslides/panel/shared/tmp/sockets
     - /app/nslides/panel/shared/tmp/cache
@@ -43,9 +44,10 @@
     group: rbenv
     mode: 0660
   with_items:
-    - { src: database.yml.j2, dst: config/database.yml }
-    - { src: secrets.yml.j2,  dst: config/secrets.yml  }
-    - { src: cable.yml.j2,    dst: config/cable.yml    }
+    - { src: database.yml.j2, dst: config/database.yml            }
+    - { src: secrets.yml.j2,  dst: config/secrets.yml             }
+    - { src: cable.yml.j2,    dst: config/cable.yml               }
+    - { src: sidekiq.rb.j2,   dst: config/initializers/sidekiq.rb }
 
 - name: Bitbucketアクセス用SSH鍵の配置
   copy:

@@ -1,19 +1,43 @@
 ---
 
+- name: EC2用セキュリティグループを作成
+  ec2_group:
+    name: "{{ group_name }}"
+    description: "{{ group_name }}"
+    region: ap-northeast-1
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port:   22
+        cidr_ip:   0.0.0.0/0
+      - proto: tcp
+        from_port: 80
+        to_port:   80
+        cidr_ip:   0.0.0.0/0
+      - proto: tcp
+        from_port: 443
+        to_port:   443
+        cidr_ip:   0.0.0.0/0
+    rules_egress:
+      - proto: all
+        from_port: 0
+        to_port:   65535
+        cidr_ip:   0.0.0.0/0
+
 - name: EC2インスタンスを作成
   ec2:
-    image: "{{ ami_image }}"
+    image:         "{{ ami_image }}"
     instance_type: "{{ instance_type }}"
-    region: "{{ region }}"
-    key_name: "{{ service_name }}"
-    group: "{{ group_name }}"
+    region:        "{{ region }}"
+    key_name:      "{{ service_name }}"
+    group:         "{{ group_name }}"
     instance_tags:
-      Name: "{{ group_name }}"
-    exact_count: 1
+      Name:        "{{ group_name }}"
+    exact_count:   1
     count_tag:
-      Name: "{{ group_name }}"
-    wait: yes
-    wait_timeout: 300
+      Name:        "{{ group_name }}"
+    wait:          yes
+    wait_timeout:  300
     volumes:
       - device_name: "{{ device_name }}"
         volume_type: "{{ volume_type }}"

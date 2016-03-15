@@ -1,0 +1,5 @@
+# ElastiCache無料枠に収めるための設定
+
+---
+
+node_type: cache.t2.micro

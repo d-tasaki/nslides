@@ -1,27 +1,20 @@
 ---
 
-- name: setup aws resources
+- name: AWSリソースのセットアップ
   hosts: localhost
   connection: local
   roles:
-    - security_group
     - elasticache
-#    - iam
     - ec2
     - rds
     - s3
   vars:
     service_name: nslides01
-    ami_image: ami-383c1956
-    key_name: nslides01
     group_name: application
-    instance_type: t2.micro
-    device_name: /dev/xvda
-    volume_type: gp2
-    volume_size: 30
     region: ap-northeast-1
 
-- hosts: tag_Name_application
+- name: アプリケーションサーバーのセットアップ
+  hosts: tag_Name_application
   remote_user: ec2-user
   become: yes
   roles:
@@ -31,7 +24,8 @@
     - ruby
     - panel_base
   vars:
-    db_host: "{{ groups.rds[0] }}"
+    db_host:    "{{ groups.rds[0] }}"
+    redis_host: "{{ groups.elasticache_redis[0] }}"
 
 - hosts: tag_Name_application
   remote_user: ec2-user

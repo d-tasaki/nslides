@@ -2,9 +2,9 @@
 
 - name: ElastiCache用セキュリティグループを作成
   ec2_group:
-    name: "redis"
-    description: "redis"
-    region: ap-northeast-1
+    name: redis
+    description: redis
+    region: "{{ region }}"
     rules:
       - proto: tcp
         from_port: 6379
@@ -23,7 +23,7 @@
     state: present
     engine: redis
     cache_engine_version: 2.8.24
-    node_type: cache.t2.micro
+    node_type: "{{ node_type }}"
     num_nodes: 1
     cache_port: 6379
     cache_security_groups: []
@@ -31,3 +31,7 @@
       - "{{ sg.group_id }}"
     region: "{{ region }}"
     zone: ap-northeast-1a
+  register: result
+
+- name: 作成したElastiCacheのエンドポイント
+  debug: msg="The new ElastiCache endpoint is {{ result.elasticache.data.CacheNodes[0].Endpoint }}"
